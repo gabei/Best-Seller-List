@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 import requests
 
+
 load_dotenv()
 NYT_bestsellers_fiction_API = os.getenv("BOOKS_API_FICTION")
 NYT_bestsellers_nonfiction_API = os.getenv("BOOKS_API_NONFICTION")
