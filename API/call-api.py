@@ -18,23 +18,15 @@ def create_book_list(API_URL):
     book_list = []
 
     for book in the_list_of_relevant_data:
-        title = book['title']
-        author = book['author']
-        description = book['description']
-        publisher = book['publisher']
-        rank = book['rank']
-        weeks_on_list = book['weeks_on_list']
-        rank_last_week = book['rank_last_week']
-
         book_list.append(
             {
-                'title': title,
-                'author': author,
-                'publisher': publisher,
-                'description': description,
-                'weeks_on_list': weeks_on_list,
-                'rank': rank,
-                'rank_last_week': rank_last_week,
+                'title': book['title'],
+                'author': book['author'],
+                'publisher': book['publisher'],
+                'description': book['description'],
+                'weeks_on_list': book['weeks_on_list'],
+                'rank': book['rank'],
+                'rank_last_week': book['rank_last_week'],
             }
         )
 
@@ -42,3 +34,6 @@ def create_book_list(API_URL):
 
 fiction_book_list = create_book_list(NYT_bestsellers_fiction_API)
 nonfiction_book_list = create_book_list(NYT_bestsellers_nonfiction_API)
+
+print(fiction_book_list)
+print(nonfiction_book_list)
