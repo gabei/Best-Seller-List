@@ -9,10 +9,22 @@ NYT_bestsellers_nonfiction_API = os.getenv("BOOKS_API_NONFICTION")
 
 
 def call_api_and_get_json_data(API_URL):
+    """ 
+    Calls the NYT Best Seller API and returns the raw JSON data.
+    - Expects a valid api URL with api key included
+    - Returns json data format
+    """
+
     r = requests.get(API_URL)
     return r.json()
 
 def create_book_list(API_URL):
+    """
+    Takes NYT best seller data as json data, grabs the relevant info, and creates a new list of stripped down data to return.
+    - Expects a balid api URL with api key included.
+    - Returns a list of dictionaries.
+    """
+    
     data = call_api_and_get_json_data(API_URL)
     the_list_of_relevant_data = data['results']['books']
     book_list = []
