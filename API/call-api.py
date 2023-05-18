@@ -3,11 +3,6 @@ import os
 import requests
 
 
-load_dotenv()
-NYT_bestsellers_fiction_API = os.getenv("BOOKS_API_FICTION")
-NYT_bestsellers_nonfiction_API = os.getenv("BOOKS_API_NONFICTION")
-
-
 def call_api_and_get_json_data(API_URL):
     """ 
     Calls the NYT Best Seller API and returns the raw JSON data.
@@ -24,7 +19,7 @@ def create_book_list(API_URL):
     - Expects a balid api URL with api key included.
     - Returns a list of dictionaries.
     """
-    
+
     data = call_api_and_get_json_data(API_URL)
     the_list_of_relevant_data = data['results']['books']
     book_list = []
@@ -43,6 +38,11 @@ def create_book_list(API_URL):
         )
 
     return book_list
+
+
+load_dotenv()
+NYT_bestsellers_fiction_API = os.getenv("BOOKS_API_FICTION")
+NYT_bestsellers_nonfiction_API = os.getenv("BOOKS_API_NONFICTION")
 
 fiction_book_list = create_book_list(NYT_bestsellers_fiction_API)
 nonfiction_book_list = create_book_list(NYT_bestsellers_nonfiction_API)
