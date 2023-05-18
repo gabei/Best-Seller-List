@@ -8,21 +8,37 @@ NYT_bestsellers_fiction_API = os.getenv("BOOKS_API_FICTION")
 NYT_bestsellers_nonfiction_API = os.getenv("BOOKS_API_NONFICTION")
 
 
-def get_list(API_URL):
+def call_api_and_get_json_data(API_URL):
     r = requests.get(API_URL)
-    the_list = r.json()['results']['books']
+    return r.json()
 
-    print('Rank\tTitle\tAuthor\tWeeks on List')
+def create_book_list(API_URL):
+    data = call_api_and_get_json_data(API_URL)
+    the_list_of_relevant_data = data['results']['books']
+    book_list = []
 
-    for book in the_list:
+    for book in the_list_of_relevant_data:
         title = book['title']
         author = book['author']
+        description = book['description']
+        publisher = book['publisher']
         rank = book['rank']
         weeks_on_list = book['weeks_on_list']
+        rank_last_week = book['rank_last_week']
 
-        print(f'{rank}\t{title}\t\t\t\t{author}\t{weeks_on_list}')
-    print("\n")
+        book_list.append(
+            {
+                'title': title,
+                'author': author,
+                'publisher': publisher,
+                'description': description,
+                'weeks_on_list': weeks_on_list,
+                'rank': rank,
+                'rank_last_week': rank_last_week,
+            }
+        )
 
+    return book_list
 
-get_list(NYT_bestsellers_fiction_API)
-get_list(NYT_bestsellers_nonfiction_API)
+fiction_book_list = create_book_list(NYT_bestsellers_fiction_API)
+nonfiction_book_list = create_book_list(NYT_bestsellers_nonfiction_API)
