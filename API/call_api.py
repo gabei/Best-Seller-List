@@ -5,7 +5,7 @@ import doc_builder as docbuilder
 
 
 def call_api_and_get_json_data(API_URL: str) -> dict:
-    """ 
+    """
     Calls the NYT Best Seller API and returns the raw JSON data.
     - Expects a valid api URL with api key included
     - Returns data in json format
@@ -57,4 +57,12 @@ nonfiction_book_list = create_book_list(NYT_bestsellers_nonfiction_API)
 doc = docbuilder.DocBuilder()
 doc.create_header("New York Times Best Seller List")
 
+# Setup the Table
+doc.create_table(16, 4)
+table_headers = ['Rank', 'Description', 'Last Week', 'Weeks on List']
+doc.create_headers_for_table(table_headers)
+
+# Populate the Table
+
 print(doc)
+print(doc.save_document('testdoc'))
