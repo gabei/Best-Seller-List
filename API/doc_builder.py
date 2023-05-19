@@ -7,7 +7,7 @@ class DocBuilder:
     def __init__(self):
         self.doc = Document()
 
-    def build_header_text(self, text):
+    def create_header(self, text):
         """Builds a document header using the passed text.
         - Expects a string
         - Returns 1 if successful."""
@@ -17,8 +17,9 @@ class DocBuilder:
 
         self.doc.add_heading(text)
         self.doc.add_page_break()
+        self.title = text
         return 1
-    
+
     def create_table(self, rows=0, cols=0):
         """
         Creates a table of specified rows and columns. Creates a blank table if not specified.
@@ -36,5 +37,7 @@ class DocBuilder:
 
        # for item in data:
 
-
         pass
+
+    def __str__(self):
+        return f"Document titled \"{self.title}\""
