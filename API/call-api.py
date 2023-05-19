@@ -7,16 +7,17 @@ def call_api_and_get_json_data(API_URL):
     """ 
     Calls the NYT Best Seller API and returns the raw JSON data.
     - Expects a valid api URL with api key included
-    - Returns json data format
+    - Returns data in json format
     """
 
     r = requests.get(API_URL)
     return r.json()
 
+
 def create_book_list(API_URL):
     """
     Takes NYT best seller data as json data, grabs the relevant info, and creates a new list of stripped down data to return.
-    - Expects a balid api URL with api key included.
+    - Expects a valid api URL with api key included.
     - Returns a list of dictionaries.
     """
 
