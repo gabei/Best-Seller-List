@@ -49,9 +49,6 @@ NYT_bestsellers_nonfiction_API = os.getenv("BOOKS_API_NONFICTION")
 fiction_book_list = create_book_list(NYT_bestsellers_fiction_API)
 nonfiction_book_list = create_book_list(NYT_bestsellers_nonfiction_API)
 
-# print(fiction_book_list)
-# print(nonfiction_book_list)
-
 
 # Build the Word Document
 doc = docbuilder.DocBuilder()
