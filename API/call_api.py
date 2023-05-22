@@ -54,12 +54,19 @@ nonfiction_book_list = create_book_list(NYT_bestsellers_nonfiction_API)
 doc = docbuilder.DocBuilder()
 doc.create_header("New York Times Best Seller List")
 
+# Check that it worked
+print(doc)
+
 # Setup the Table
 doc.create_table(16, 4)
 table_headers = ['Rank', 'Description', 'Last Week', 'Weeks on List']
 doc.create_headers_for_table(table_headers)
 
 # Populate the Table
+for book in fiction_book_list:
+    #print(book)
+    #print("\n")
+    doc.build_row_from(book)
 
-print(doc)
-print(doc.save_document('testdoc'))
+doc.save_document('test')
+

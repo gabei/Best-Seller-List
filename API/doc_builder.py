@@ -46,15 +46,20 @@ class DocBuilder:
 
         return 1
 
-    def build_row_from(data):
+    def build_row_from(self, data):
         """Builds a row of table data using the data passed.
         - Expects an array in desired order"""
 
         row = self.table.add_row()
+        # Rank, title-author-publisher-description, Rank last week, Weeks on list
+        print(data)
+        
+        row.cells[0].text = str(data['rank'])
+        row.cells[1].text = f"{data['title']}, by {data['author']}. ({data['publisher']}.) {data['description']}"
+        row.cells[2].text = str(data['rank_last_week'])
+        row.cells[3].text = str(data['weeks_on_list'])
 
-       # for item in data:
-
-        pass
+        return data
 
     def save_document(self, file_name: str) -> str:
         self.doc.save(file_name+".docx")
