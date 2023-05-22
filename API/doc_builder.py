@@ -16,7 +16,6 @@ class DocBuilder:
             raise TypeError("This method only accepts strings.")
 
         self.doc.add_heading(text)
-        self.doc.add_page_break()
         self.title = text
         return 1
 
