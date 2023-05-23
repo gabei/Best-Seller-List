@@ -61,12 +61,12 @@ doc.define_margins_inches(margin_list_inches)
 print(doc)
 
 # Setup the Table
-doc.create_table(16, 4)
+doc.create_table(1, 4)
 doc.table.autofit = False 
 doc.table.allow_autofit = False
-column_widths_inches = [0.5, 4, 0.5, 0.5]
+column_widths_inches = [0.1, 5, 0.1, 0.1]
 doc.set_column_widths_inches(column_widths_inches)
-table_headers = ['Rank', 'Description', 'Last Week', 'Weeks on List']
+table_headers = ['This Week', 'Description', 'Last Week', 'Weeks on List']
 doc.create_headers_for_table(table_headers)
 
 # Populate the Table
