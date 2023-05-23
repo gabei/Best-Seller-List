@@ -1,6 +1,6 @@
 from docx import Document
 from docx.shared import Inches
-
+from docx.enum.table import WD_TABLE_ALIGNMENT
 
 class DocBuilder:
     """This class is used to organize methods related to .docx document creation. Upon initialization, it creates its own document using the docx module."""
@@ -59,9 +59,12 @@ class DocBuilder:
         if len(header_list) <= 0 or type(header_list) is not list:
             for index in range(0, len(headers)-1):
                 headers[index].text = str(index + 1)
-
+        
         for index, value in enumerate(header_list):
             headers[index].text = value
+            # Center the text
+            header_text = headers[index].paragraphs[0]
+            header_text.alignment = WD_TABLE_ALIGNMENT.CENTER
 
         return 1
     

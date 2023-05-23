@@ -4,6 +4,7 @@ import requests
 import doc_builder as docbuilder
 
 
+
 def call_api_and_get_json_data(API_URL: str) -> dict:
     """
     Calls the NYT Best Seller API and returns the raw JSON data.
@@ -54,7 +55,7 @@ nonfiction_book_list = create_book_list(NYT_bestsellers_nonfiction_API)
 doc = docbuilder.DocBuilder()
 doc.create_header("New York Times Best Seller List")
 # margins
-margin_list_inches = [0.5, 1, 0.5, 1]
+margin_list_inches = [0.5, 0.5, 0.5, 0.5]
 doc.define_margins_inches(margin_list_inches)
 
 # Check that it worked
@@ -62,9 +63,8 @@ print(doc)
 
 # Setup the Table
 doc.create_table(1, 4) #create an intial table with enough columns for headers
-doc.table.autofit = False 
-doc.table.allow_autofit = False
-column_widths_inches = [0.1, 5, 0.1, 0.1]
+doc.table.allow_autofit = True
+column_widths_inches = [0.1, 7, 0.1, 0.1]
 doc.set_column_widths_inches(column_widths_inches)
 table_headers = ['This Week', 'Description', 'Last Week', 'Weeks on List']
 doc.create_headers_for_table(table_headers)
