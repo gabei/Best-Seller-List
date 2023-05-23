@@ -60,10 +60,6 @@ class DocBuilder:
             for index in range(0, len(headers)-1):
                 headers[index].text = str(index + 1)
 
-        # Fill in the headers if all is OK
-        #for index in range(0, len(header_list)):
-            #headers[index].text = header_list[index]
-
         for index, value in enumerate(header_list):
             headers[index].text = value
 

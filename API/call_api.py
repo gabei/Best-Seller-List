@@ -61,7 +61,7 @@ doc.define_margins_inches(margin_list_inches)
 print(doc)
 
 # Setup the Table
-doc.create_table(1, 4)
+doc.create_table(1, 4) #create an intial table with enough columns for headers
 doc.table.autofit = False 
 doc.table.allow_autofit = False
 column_widths_inches = [0.1, 5, 0.1, 0.1]
