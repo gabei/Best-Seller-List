@@ -59,6 +59,10 @@ print(doc)
 
 # Setup the Table
 doc.create_table(16, 4)
+doc.table.autofit = False 
+doc.table.allow_autofit = False
+column_widths_inches = [0.5, 5.5, 0.5, 0.5]
+doc.set_column_widths(column_widths_inches)
 table_headers = ['Rank', 'Description', 'Last Week', 'Weeks on List']
 doc.create_headers_for_table(table_headers)
 

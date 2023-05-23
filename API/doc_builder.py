@@ -44,6 +44,28 @@ class DocBuilder:
             headers[index].text = header_list[index]
 
         return 1
+    
+    def set_column_widths(self, width_list: list) -> list:
+        """
+        Sets table column widths in order of those supplied by width_list.
+        Expects: List of widths in INCHES
+        Returns: The list of lengths if successful.
+        """
+        cols = self.table.columns
+
+        if not self.table: 
+            raise ValueError('No table exists.')
+        
+        if len(width_list) != len(cols):
+            raise ValueError('Number of columns supplied does not match table width.')
+        
+        # Set column width to all cells in each individual column
+        for idx in range(0, len(width_list)):
+            for cell_idx in range(0, len(cols[idx].cells)):
+                cols[idx].cells[cell_idx].width = width_list[idx]
+        
+        return width_list
+        
 
     def build_row_from(self, data):
         """Builds a row of table data using the data passed.
@@ -51,7 +73,7 @@ class DocBuilder:
 
         row = self.table.add_row()
         # Rank, title-author-publisher-description, Rank last week, Weeks on list
-        print(data)
+        #print(data)
         
         row.cells[0].text = str(data['rank'])
         row.cells[1].text = f"{data['title']}, by {data['author']}. ({data['publisher']}.) {data['description']}"
