@@ -34,9 +34,9 @@ class DocBuilder:
         sections = self.doc.sections
         for section in sections:
             section.left_margin = Inches(margin_list[0])
-            section.top_margin = Inches(margin_list[0])
-            section.right_margin = Inches(margin_list[0])
-            section.bottom_margin = Inches(margin_list[0])
+            section.top_margin = Inches(margin_list[1])
+            section.right_margin = Inches(margin_list[2])
+            section.bottom_margin = Inches(margin_list[3])
 
         return margin_list
 
