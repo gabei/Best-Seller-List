@@ -60,11 +60,13 @@ class DocBuilder:
             for index in range(0, len(headers)-1):
                 headers[index].text = str(index + 1)
         
-        for index, value in enumerate(header_list):
-            headers[index].text = value
+        for cell, value in enumerate(header_list):
+            headers[cell].text = value
             # Center the text
-            header_text = headers[index].paragraphs[0]
+            header_text = headers[cell].paragraphs[0]
             header_text.alignment = WD_TABLE_ALIGNMENT.CENTER
+            # Bold Text
+            headers[cell].paragraphs[0].runs[0].font.bold = True
 
         return 1
     
