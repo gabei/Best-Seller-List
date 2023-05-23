@@ -1,4 +1,5 @@
 from docx import Document
+from docx.shared import Inches
 
 
 class DocBuilder:
@@ -10,14 +11,34 @@ class DocBuilder:
     def create_header(self, text):
         """Builds a document header using the passed text.
         - Expects a string
-        - Returns 1 if successful."""
+        - Returns the text if successful.
+        """
 
         if type(text) is not str:
             raise TypeError("This method only accepts strings.")
 
         self.doc.add_heading(text)
         self.title = text
-        return 1
+        return text
+    
+    def define_margins_inches(self, margin_list: list) -> list:
+        """
+        Sets the document margins in clock-wise order from margin_list, starting from left and ending on bottom.
+        Expects: A list of four page margins in inches.
+        Returns: The margin list if successful.
+        """
+        
+        if len(margin_list) != 4:
+            raise ValueError("List of margins must include 4 values.")
+
+        sections = self.doc.sections
+        for section in sections:
+            section.left_margin = Inches(margin_list[0])
+            section.top_margin = Inches(margin_list[0])
+            section.right_margin = Inches(margin_list[0])
+            section.bottom_margin = Inches(margin_list[0])
+
+        return margin_list
 
     def create_table(self, r: int, c: int):
         """
@@ -45,7 +66,7 @@ class DocBuilder:
 
         return 1
     
-    def set_column_widths(self, width_list: list) -> list:
+    def set_column_widths_inches(self, width_list: list) -> list:
         """
         Sets table column widths in order of those supplied by width_list.
         Expects: List of widths in INCHES
@@ -62,7 +83,7 @@ class DocBuilder:
         # Set column width to all cells in each individual column
         for idx in range(0, len(width_list)):
             for cell_idx in range(0, len(cols[idx].cells)):
-                cols[idx].cells[cell_idx].width = width_list[idx]
+                cols[idx].cells[cell_idx].width = Inches(width_list[idx])
         
         return width_list
         
