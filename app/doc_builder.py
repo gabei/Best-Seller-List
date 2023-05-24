@@ -29,11 +29,17 @@ class DocBuilder:
         return margin_list
 
     def set_document_default_font_and_size(self, font_name="Arial", font_size="10"):
+        """
+        Sets the default font and font size for the document.
+        Expects: Font name as a string, font size as an int.
+        Returns: Tuple containing both values if successful.
+        """
         style = self.doc.styles['Normal']
         font = style.font
         font.name = font_name
         font.size = Pt(font_size)
-        pass
+        
+        return (font_name, font_size)
 
     def create_header(self, text):
         """Builds a document header using the passed text.
