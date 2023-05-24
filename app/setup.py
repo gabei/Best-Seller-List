@@ -34,4 +34,6 @@ for book in fiction_book_list:
 # Apply Column Widths
 column_widths_inches = [0.5, 7, 0.6, 0.7]
 doc.set_column_widths_inches(column_widths_inches)
+
+# Save our work!
 doc.save_document('test')
