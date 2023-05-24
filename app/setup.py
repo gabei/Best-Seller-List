@@ -29,8 +29,6 @@ doc.create_headers_for_table(table_headers)
 
 # Populate the Table
 for book in fiction_book_list:
-    #print(book)
-    #print("\n")
     doc.build_row_from(book)
 
 # Apply Column Widths
