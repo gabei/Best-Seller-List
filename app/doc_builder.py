@@ -1,7 +1,7 @@
 from docx import Document
-from docx.shared import Inches
+from docx.shared import Pt, Inches
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.shared import Pt
+
 
 class DocBuilder:
     """This class is used to organize methods related to .docx document creation. Upon initialization, it creates its own document using the docx module."""
@@ -68,8 +68,8 @@ class DocBuilder:
         - Invalid input will create a blank table
         - Returns 1 if successful
         """
-        self.table = self.__doc.add_table(rows=r, cols=c)
 
+        self.table = self.__doc.add_table(rows=r, cols=c)
         return 1
 
     def create_headers_for_table(self, header_list: list) -> None:
@@ -126,12 +126,13 @@ class DocBuilder:
     def build_row_from(self, data):
         """
         Builds a row of table data using the book info passed.
-        
+
         Expects an object
             - NYT Best Seller Data:
             - Rank, title, author, description, Rank last week, Weeks on list
         Returns said object if successful
         """
+
         row = self.table.add_row()
         
         row.cells[0].text = str(data['rank'])
