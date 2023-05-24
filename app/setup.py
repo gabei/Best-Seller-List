@@ -15,7 +15,8 @@ nonfiction_book_list = API_CALLER.create_book_list(NYT_bestsellers_nonfiction_AP
 # Build the Word Document
 doc = docbuilder.DocBuilder()
 doc.create_header("New York Times Best Seller List")
-# margins
+
+# Adjust Margins
 margin_list_inches = [0.5, 0.5, 0.5, 0.5]
 doc.define_margins_inches(margin_list_inches)
 doc.set_document_default_font_and_size("Arial", 10)
@@ -23,7 +24,6 @@ doc.set_document_default_font_and_size("Arial", 10)
 # Setup the Table
 doc.create_table(1, 4) #create an intial table with enough columns for headers
 doc.table.allow_autofit = True
-
 table_headers = ['This Week', 'Description', 'Last Week', 'Weeks on List']
 doc.create_headers_for_table(table_headers)
 
