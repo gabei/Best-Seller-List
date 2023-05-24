@@ -7,7 +7,7 @@ class DocBuilder:
     """This class is used to organize methods related to .docx document creation. Upon initialization, it creates its own document using the docx module."""
 
     def __init__(self):
-        self.doc = Document()
+        self.__doc = Document()
 
     def define_margins_inches(self, margin_list: list) -> list:
         """
@@ -19,7 +19,7 @@ class DocBuilder:
         if len(margin_list) != 4:
             raise ValueError("List of margins must include 4 values.")
 
-        sections = self.doc.sections
+        sections = self.__doc.sections
         for section in sections:
             section.left_margin = Inches(margin_list[0])
             section.top_margin = Inches(margin_list[1])
@@ -34,7 +34,7 @@ class DocBuilder:
         Expects: Font name as a string, font size as an int.
         Returns: Tuple containing both values if successful.
         """
-        style = self.doc.styles['Normal']
+        style = self.__doc.styles['Normal']
         font = style.font
         font.name = font_name
         font.size = Pt(font_size)
@@ -50,7 +50,7 @@ class DocBuilder:
         if type(text) is not str:
             raise TypeError("This method only accepts strings.")
 
-        self.doc.add_heading(text)
+        self.__doc.add_heading(text)
         self.title = text
         return text
     
@@ -63,12 +63,17 @@ class DocBuilder:
         - Invalid input will create a blank table
         - Returns 1 if successful
         """
-        self.table = self.doc.add_table(rows=r, cols=c)
+        self.table = self.__doc.add_table(rows=r, cols=c)
 
         return 1
 
     def create_headers_for_table(self, header_list: list) -> None:
-        # Define the headers in the table
+        """
+        Sets the text of the header cells of the table in header_list order: left -> right
+        Expects: A list of strings
+        Returns: The list if successful
+        """
+        # Define the header cells of the table
         headers = self.table.rows[0].cells
 
         # Check for erroneous values
@@ -76,6 +81,7 @@ class DocBuilder:
             for index in range(0, len(headers)-1):
                 headers[index].text = str(index + 1)
         
+        # Apply List to Headers
         for cell, value in enumerate(header_list):
             headers[cell].text = value
             # Center the text
@@ -84,7 +90,7 @@ class DocBuilder:
             # Bold Text
             headers[cell].paragraphs[0].runs[0].font.bold = True
 
-        return 1
+        return header_list
     
     def set_column_widths_inches(self, width_list: list) -> list:
         """
@@ -124,7 +130,7 @@ class DocBuilder:
         return data
 
     def save_document(self, file_name: str) -> str:
-        self.doc.save(file_name+".docx")
+        self.__doc.save(file_name+".docx")
         return f"Document saved at \"{file_name}.docx\""
 
     def __str__(self):
