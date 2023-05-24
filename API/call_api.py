@@ -57,6 +57,7 @@ doc.create_header("New York Times Best Seller List")
 # margins
 margin_list_inches = [0.5, 0.5, 0.5, 0.5]
 doc.define_margins_inches(margin_list_inches)
+doc.set_document_default_font_and_size("Arial", 10)
 
 # Check that it worked
 print(doc)
@@ -64,8 +65,7 @@ print(doc)
 # Setup the Table
 doc.create_table(1, 4) #create an intial table with enough columns for headers
 doc.table.allow_autofit = True
-column_widths_inches = [0.1, 7, 0.1, 0.1]
-doc.set_column_widths_inches(column_widths_inches)
+
 table_headers = ['This Week', 'Description', 'Last Week', 'Weeks on List']
 doc.create_headers_for_table(table_headers)
 
@@ -75,5 +75,8 @@ for book in fiction_book_list:
     #print("\n")
     doc.build_row_from(book)
 
+# Apply Column Widths
+column_widths_inches = [0.5, 7, 0.6, 0.7]
+doc.set_column_widths_inches(column_widths_inches)
 doc.save_document('test')
 

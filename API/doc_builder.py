@@ -1,6 +1,7 @@
 from docx import Document
 from docx.shared import Inches
 from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.shared import Pt
 
 class DocBuilder:
     """This class is used to organize methods related to .docx document creation. Upon initialization, it creates its own document using the docx module."""
@@ -8,19 +9,6 @@ class DocBuilder:
     def __init__(self):
         self.doc = Document()
 
-    def create_header(self, text):
-        """Builds a document header using the passed text.
-        - Expects a string
-        - Returns the text if successful.
-        """
-
-        if type(text) is not str:
-            raise TypeError("This method only accepts strings.")
-
-        self.doc.add_heading(text)
-        self.title = text
-        return text
-    
     def define_margins_inches(self, margin_list: list) -> list:
         """
         Sets the document margins in clock-wise order from margin_list, starting from left and ending on bottom.
@@ -39,6 +27,28 @@ class DocBuilder:
             section.bottom_margin = Inches(margin_list[3])
 
         return margin_list
+
+    def set_document_default_font_and_size(self, font_name="Arial", font_size="10"):
+        style = self.doc.styles['Normal']
+        font = style.font
+        font.name = font_name
+        font.size = Pt(font_size)
+        pass
+
+    def create_header(self, text):
+        """Builds a document header using the passed text.
+        - Expects a string
+        - Returns the text if successful.
+        """
+
+        if type(text) is not str:
+            raise TypeError("This method only accepts strings.")
+
+        self.doc.add_heading(text)
+        self.title = text
+        return text
+    
+    
 
     def create_table(self, r: int, c: int):
         """
