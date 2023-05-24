@@ -1,7 +1,8 @@
 from docx import Document
 from docx.shared import Pt, Inches
 from docx.enum.table import WD_TABLE_ALIGNMENT
-
+from docx.oxml.ns import qn
+import stylizer
 
 class DocBuilder:
     """This class is used to organize methods related to .docx document creation. Upon initialization, it creates its own document using the docx module."""
@@ -54,8 +55,17 @@ class DocBuilder:
         if type(text) is not str:
             raise TypeError("This method only accepts strings.")
 
-        self.__doc.add_heading(text)
+        
         self.title = text
+        self.__doc.add_heading(text, 1)
+        #TODO Heading style
+        '''
+        title_style = heading.style
+        rFonts = title_style.element.rPr.rFonts
+        rFonts.set(qn("w:asciiTheme"), "Arial")
+        '''
+        
+
         return text
     
     
@@ -90,12 +100,10 @@ class DocBuilder:
         
         # Apply List to Headers
         for cell, value in enumerate(header_list):
-            headers[cell].text = value
-            # Center the text TODO: styling methods
-            header_text = headers[cell].paragraphs[0]
-            header_text.alignment = WD_TABLE_ALIGNMENT.CENTER
-            # Bold Text TODO: styling methods
-            headers[cell].paragraphs[0].runs[0].font.bold = True
+            table_cell = headers[cell]
+            table_cell.text = value
+            stylizer.center_cell_text(table_cell)
+            stylizer.bolden_cell_text(table_cell)
 
         return header_list
     
@@ -137,8 +145,8 @@ class DocBuilder:
         
         row.cells[0].text = str(data['rank'])
         row.cells[1].text = f"{data['title']}, by {data['author']}. {data['description']}"
-        row.cells[2].text = str(data['rank_last_week'])
-        row.cells[3].text = str(data['weeks_on_list'])
+        row.cells[2].text = stylizer.style_ranking_numbers(str(data['rank_last_week']))
+        row.cells[3].text = stylizer.style_ranking_numbers(str(data['weeks_on_list']))
 
         return data
 

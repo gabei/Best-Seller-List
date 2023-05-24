@@ -4,6 +4,7 @@ import doc_builder as docbuilder
 import call_api as API_CALLER
 
 
+
 load_dotenv()
 NYT_bestsellers_fiction_API = os.getenv("BOOKS_API_FICTION")
 NYT_bestsellers_nonfiction_API = os.getenv("BOOKS_API_NONFICTION")
@@ -15,7 +16,7 @@ nonfiction_book_list = API_CALLER.create_book_list(NYT_bestsellers_nonfiction_AP
 # Build the Word Document
 doc = docbuilder.DocBuilder()
 doc.set_document_default_font_and_size("Arial", 10)
-doc.create_header("New York Times Best Seller List")
+doc.create_header("The New York Times Best Seller List")
 
 # Adjust Margins
 margin_list_inches = [0.5, 0.5, 0.5, 0.5]
