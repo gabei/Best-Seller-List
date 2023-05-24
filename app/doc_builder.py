@@ -148,6 +148,11 @@ class DocBuilder:
         row.cells[2].text = stylizer.style_ranking_numbers(str(data['rank_last_week']))
         row.cells[3].text = stylizer.style_ranking_numbers(str(data['weeks_on_list']))
 
+        #TODO do not hardcode this???
+        stylizer.center_cell_text(row.cells[0])
+        stylizer.center_cell_text(row.cells[2])
+        stylizer.center_cell_text(row.cells[3])
+
         return data
 
     def save_document(self, file_name: str) -> str:
