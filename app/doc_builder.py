@@ -115,15 +115,17 @@ class DocBuilder:
         
 
     def build_row_from(self, data):
-        """Builds a row of table data using the data passed.
-        - Expects an array in desired order"""
-
+        """
+        Builds a row of table data using the book info passed.
+        - Expects an object
+            # NYT Best Seller Data in this order:
+            # Rank, title-author-description, Rank last week, Weeks on list
+        - Returns said object if successful
+        """
         row = self.table.add_row()
-        # Rank, title-author-publisher-description, Rank last week, Weeks on list
-        #print(data)
         
         row.cells[0].text = str(data['rank'])
-        row.cells[1].text = f"{data['title']}, by {data['author']}. ({data['publisher']}.) {data['description']}"
+        row.cells[1].text = f"{data['title']}, by {data['author']}. {data['description']}"
         row.cells[2].text = str(data['rank_last_week'])
         row.cells[3].text = str(data['weeks_on_list'])
 
