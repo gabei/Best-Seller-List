@@ -4,6 +4,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 import stylizer
 
+
 class DocBuilder:
     """This class is used to organize methods related to .docx document creation. Upon initialization, it creates its own document using the docx module."""
 
@@ -55,9 +56,18 @@ class DocBuilder:
         if type(text) is not str:
             raise TypeError("This method only accepts strings.")
 
-        
         self.title = text
-        self.__doc.add_heading(text, 1)
+
+        section = self.__doc.sections[0]
+        header = section.header
+        stylizer.center_cell_text(header)
+        paragraph = header.paragraphs[0]
+        paragraph.text = text
+        paragraph.style = self.__doc.styles["Header"]
+        paragraph.style.font.size = Pt(18)
+        
+
+        #self.__doc.add_heading(text, 1)
         #TODO Heading style
         '''
         title_style = heading.style
@@ -65,11 +75,8 @@ class DocBuilder:
         rFonts.set(qn("w:asciiTheme"), "Arial")
         '''
         
-
         return text
     
-    
-
     def create_table(self, r: int, c: int):
         """
         Creates a table of specified rows and columns. Creates a blank table if not specified.
@@ -130,7 +137,6 @@ class DocBuilder:
         
         return width_list
         
-
     def build_row_from(self, data):
         """
         Builds a row of table data using the book info passed.

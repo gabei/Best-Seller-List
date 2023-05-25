@@ -15,7 +15,6 @@ def style_ranking_numbers(rank: str) -> str:
     
     return '--'
 
-
 def center_cell_text(cell):
     """
     Applies center styling to inner-cell text.

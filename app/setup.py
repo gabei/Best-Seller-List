@@ -15,11 +15,11 @@ nonfiction_book_list = API_CALLER.create_book_list(NYT_bestsellers_nonfiction_AP
 
 # Build the Word Document
 doc = docbuilder.DocBuilder()
-doc.set_document_default_font_and_size("Arial", 10)
+doc.set_document_default_font_and_size("Arial", 10.5)
 doc.create_header("The New York Times Best Seller List")
 
 # Adjust Margins
-margin_list_inches = [0.5, 0.5, 0.5, 0.5]
+margin_list_inches = [0.5, 1.25, 0.5, 0.25]
 doc.define_margins_inches(margin_list_inches)
 
 # Setup the Table
