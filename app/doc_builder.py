@@ -65,15 +65,6 @@ class DocBuilder:
         paragraph = header.paragraphs[0]
         paragraph.text = text
         
-
-        #self.__doc.add_heading(text, 1)
-        #TODO Heading style
-        '''
-        title_style = heading.style
-        rFonts = title_style.element.rPr.rFonts
-        rFonts.set(qn("w:asciiTheme"), "Arial")
-        '''
-        
         return text
     
     def create_table(self, r: int, c: int):

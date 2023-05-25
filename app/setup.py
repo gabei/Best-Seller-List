@@ -25,11 +25,11 @@ doc.define_margins_inches(margin_list_inches)
 # Setup the Table
 doc.create_table(1, 4) #create an intial table with enough columns for headers
 doc.table.allow_autofit = True
-table_headers = ['This Week', 'Description', 'Last Week', 'Weeks on List']
+table_headers = ['This Week', str(fiction_book_list["list_title"]), 'Last Week', 'Weeks on List']
 doc.create_headers_for_table(table_headers)
 
 # Populate the Table
-for book in fiction_book_list:
+for book in fiction_book_list["book_list"]:
     doc.build_row_from(book)
 
 # Apply Column Widths

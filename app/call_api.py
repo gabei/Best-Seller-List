@@ -15,11 +15,12 @@ def create_book_list(API_URL: str) -> list:
     """
     Takes NYT best seller data as json data, grabs the relevant info, and creates a new list of stripped down data to return.
     - Expects a valid api URL with api key included.
-    - Returns a list of dictionaries.
+    - Returns a a dict containing the list and the book list itself as a list of dictionaries.
     """
 
     data = call_api_and_get_json_data(API_URL)
     the_list_of_relevant_data = data['results']['books']
+    list_title = data['results']["published_date"] + " " + data['results']["list_name"]
     book_list = []
 
     for book in the_list_of_relevant_data:
@@ -35,4 +36,8 @@ def create_book_list(API_URL: str) -> list:
             }
         )
 
-    return book_list
+    return {
+        "list_title": list_title,
+        "book_list": book_list
+    }
+    
