@@ -61,10 +61,9 @@ class DocBuilder:
         section = self.__doc.sections[0]
         header = section.header
         stylizer.center_cell_text(header)
+        stylizer.set_cell_font_size(header, 18)
         paragraph = header.paragraphs[0]
         paragraph.text = text
-        paragraph.style = self.__doc.styles["Header"]
-        paragraph.style.font.size = Pt(18)
         
 
         #self.__doc.add_heading(text, 1)

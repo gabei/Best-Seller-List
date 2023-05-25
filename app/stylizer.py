@@ -1,6 +1,13 @@
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.shared import Pt, Inches
 
+'''
+TODO
+- DRY
+- Fix up some of the repeated assignments in this module
+- Errors
+'''
+
 
 def style_ranking_numbers(rank: str) -> str:
     """
@@ -14,6 +21,19 @@ def style_ranking_numbers(rank: str) -> str:
         return rank
     
     return '--'
+
+def set_cell_font_size(cell, font_size: int):
+    """
+    Sets cell paragraph's font size.
+
+    Expects: Integer > 0
+    Returns: 1 if updated successfully
+    """
+
+    text = cell.paragraphs[0]
+    text.style.font.size = Pt(font_size)
+
+    return 1
 
 def center_cell_text(cell):
     """
