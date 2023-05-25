@@ -20,7 +20,8 @@ def create_book_list(API_URL: str) -> list:
 
     data = call_api_and_get_json_data(API_URL)
     the_list_of_relevant_data = data['results']['books']
-    list_title = data['results']["published_date"] + " " + data['results']["list_name"]
+    list_name = data['results']['list_name']
+    list_date = data['results']['published_date']
     book_list = []
 
     for book in the_list_of_relevant_data:
@@ -37,7 +38,8 @@ def create_book_list(API_URL: str) -> list:
         )
 
     return {
-        "list_title": list_title,
+        "list_name": list_name,
+        "list_date": list_date,
         "book_list": book_list
     }
     

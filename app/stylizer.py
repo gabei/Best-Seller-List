@@ -1,5 +1,6 @@
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.shared import Pt, Inches
+from datetime import datetime
 
 '''
 TODO
@@ -52,3 +53,15 @@ def bolden_cell_text(cell):
 
     cell.paragraphs[0].runs[0].font.bold = True
     return 1
+
+def style_publish_date(date_string:str) -> str:
+
+    new_date = datetime.strptime(date_string, '%Y-%m-%d')
+    publish_date = new_date.strftime('%B %d %Y')
+
+    return publish_date
+
+def generate_namedate_header(unformatted_date_string: str, name_string: str) -> str:
+    date_string = style_publish_date(unformatted_date_string)
+
+    return f"{date_string}\n{name_string}"

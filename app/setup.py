@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 import doc_builder as docbuilder
 import call_api as API_CALLER
+import stylizer
 
 
 
@@ -25,7 +26,13 @@ doc.define_margins_inches(margin_list_inches)
 # Setup the Table
 doc.create_table(1, 4) #create an intial table with enough columns for headers
 doc.table.allow_autofit = True
-table_headers = ['This Week', str(fiction_book_list["list_title"]), 'Last Week', 'Weeks on List']
+
+list_namedate_header = stylizer.generate_namedate_header(
+    fiction_book_list['list_date'],
+    fiction_book_list['list_name']
+)
+
+table_headers = ['This Week', list_namedate_header, 'Last Week', 'Weeks on List']
 doc.create_headers_for_table(table_headers)
 
 # Populate the Table
