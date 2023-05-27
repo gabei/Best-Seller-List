@@ -4,6 +4,7 @@ import settings
 
 
 def generate_NYT_best_seller_doc(book_api: dict) -> docbuilder:
+    print(f"Generating New York Times Best Seller List: {book_api['list_name']}")
 
     # Build the Word Document
     doc = build_docx(settings.FONT, settings.FONT_SIZE, settings.DOCUMENT_HEADING, settings.MARGIN_LIST_INCHES)
@@ -53,5 +54,5 @@ def populate_docx_table(doc: docbuilder, book_api: dict, column_widths) -> int:
     return 1
 
 def save_document(doc, title):
-    doc.save_document(title)
+    print(doc.save_document(title))
     return doc

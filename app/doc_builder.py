@@ -86,7 +86,7 @@ class DocBuilder:
         Expects: A list of strings
         Returns: The list if successful
         """
-        print(header_list)
+
         # Define the header cells of the table
         headers = self.table.rows[0].cells
 
@@ -152,8 +152,13 @@ class DocBuilder:
         return data
 
     def save_document(self, file_name: str) -> str:
-        self.__doc.save(file_name+".docx")
-        return f"Document saved at \"{file_name}.docx\""
+        self.file_name=file_name+".docx"
+        self.__doc.save(self.file_name)
+        return f"Document saved at \"{self.file_name}\""
+    
+    def get_file_name(self):
+        if self.file_name:
+            return self.file_name
 
     def __str__(self):
         return f"Document titled \"{self.title}\""

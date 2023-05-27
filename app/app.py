@@ -10,5 +10,8 @@ NYT_bestsellers_nonfiction_API = os.getenv("BOOKS_API_NONFICTION")
 fiction_book_list = API_CALLER.create_book_list(NYT_bestsellers_fiction_API)
 nonfiction_book_list = API_CALLER.create_book_list(NYT_bestsellers_nonfiction_API)
 
-generate.generate_NYT_best_seller_doc(fiction_book_list)
-generate.generate_NYT_best_seller_doc(nonfiction_book_list)
+fiction_document = generate.generate_NYT_best_seller_doc(fiction_book_list)
+nonfiction_document = generate.generate_NYT_best_seller_doc(nonfiction_book_list)
+
+os.startfile(fiction_document.get_file_name())
+os.startfile(nonfiction_document.get_file_name())
