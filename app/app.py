@@ -12,6 +12,3 @@ nonfiction_book_list = API_CALLER.create_book_list(NYT_bestsellers_nonfiction_AP
 
 fiction_document = generate.generate_NYT_best_seller_doc(fiction_book_list)
 nonfiction_document = generate.generate_NYT_best_seller_doc(nonfiction_book_list)
-
-os.startfile(fiction_document.get_file_name())
-os.startfile(nonfiction_document.get_file_name())
