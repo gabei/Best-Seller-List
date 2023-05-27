@@ -63,5 +63,4 @@ def style_publish_date(date_string:str) -> str:
 
 def generate_namedate_header(unformatted_date_string: str, name_string: str) -> str:
     date_string = style_publish_date(unformatted_date_string)
-
     return f"{date_string}\n{name_string}"

@@ -67,15 +67,15 @@ class DocBuilder:
         
         return text
     
-    def create_table(self, r: int, c: int):
+    def create_table(self, rows_cols: tuple):
         """
         Creates a table of specified rows and columns. Creates a blank table if not specified.
 
-        - Expects integers > 0 for rows and cols
+        - Expects a tuple of integers > 0 for [0]=rows and [1]=cols
         - Invalid input will create a blank table
         - Returns 1 if successful
         """
-
+        (r, c) = rows_cols
         self.table = self.__doc.add_table(rows=r, cols=c)
         return 1
 
@@ -86,7 +86,7 @@ class DocBuilder:
         Expects: A list of strings
         Returns: The list if successful
         """
-
+        print(header_list)
         # Define the header cells of the table
         headers = self.table.rows[0].cells
 
@@ -134,7 +134,7 @@ class DocBuilder:
         Expects an object
             - NYT Best Seller Data:
             - Rank, title, author, description, Rank last week, Weeks on list
-        Returns said object if successful
+            - Returns said object if successful
         """
 
         row = self.table.add_row()
