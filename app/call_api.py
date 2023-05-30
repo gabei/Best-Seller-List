@@ -1,10 +1,10 @@
 import requests
 
 def call_api_and_get_json_data(API_URL: str) -> dict:
-    """
-    Calls the NYT Best Seller API and returns the raw JSON data.
-    - Expects a valid api URL with api key included
-    - Returns data in json format
+    """Calls the NYT Best Seller API and returns the raw JSON data.
+
+    Expects: alid api URL with api key included
+    Returns: data in json format
     """
 
     r = requests.get(API_URL)
@@ -12,10 +12,10 @@ def call_api_and_get_json_data(API_URL: str) -> dict:
 
 
 def create_book_list(API_URL: str) -> list:
-    """
-    Takes NYT best seller data as json data, grabs the relevant info, and creates a new list of stripped down data to return.
-    - Expects a valid api URL with api key included.
-    - Returns a a dict containing the list and the book list itself as a list of dictionaries.
+    """Takes NYT best seller data as json data, grabs the relevant info, and creates a new list of stripped down data to return.
+
+    Expects: valid api URL with api key included.
+    Returns: a dict containing the list and the book list itself as a list of dictionaries.
     """
 
     data = call_api_and_get_json_data(API_URL)
