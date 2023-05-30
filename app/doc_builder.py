@@ -31,7 +31,10 @@ class DocBuilder:
 
         return margin_list
 
-    def set_document_default_font_and_size(self, font_name="Arial", font_size="10"):
+    def set_document_default_font_and_size(
+            self, 
+            font_name="Arial", 
+            font_size="10") -> tuple:
         """Sets the default font and font size for the document.
 
         Expects: Font name as a string, font size as an int.

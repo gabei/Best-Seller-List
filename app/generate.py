@@ -25,7 +25,10 @@ def generate_NYT_best_seller_doc(book_api: dict) -> docbuilder:
 
     return doc
 
-def build_docx(font: str, font_size: int, document_heading: str, margin_list_inches: list) -> docbuilder:
+def build_docx(
+        font: str, font_size: int, 
+        document_heading: str, 
+        margin_list_inches: list) -> docbuilder:
     """Creates the document object. This must happen first to perform any of the other document related functions.
 
     Expects: Font, font size, heading, margins
@@ -39,7 +42,10 @@ def build_docx(font: str, font_size: int, document_heading: str, margin_list_inc
 
     return doc
 
-def build_docx_table(doc, book_api, table_rows_cols, table_allow_autofit) -> None:
+def build_docx_table(
+        doc, book_api, 
+        table_rows_cols, 
+        table_allow_autofit) -> None:
     """ Creates the table that will hold the NYT list.
 
     Expects: doc object, api info, rows, columns, table autofit bool
@@ -58,7 +64,10 @@ def build_docx_table(doc, book_api, table_rows_cols, table_allow_autofit) -> Non
     header_list = ['This Week', list_namedate_header, 'Last Week', 'Weeks on List']
     doc.create_headers_for_table(header_list)
 
-def populate_docx_table(doc: docbuilder, book_api: dict, column_widths) -> None:
+def populate_docx_table(
+        doc: docbuilder, 
+        book_api: dict, 
+        column_widths) -> None:
     """ Populates the NYT table.
 
     Expects: doc object, api info, rows, columns widths

@@ -1,3 +1,5 @@
+# Settings.py holds docx specific variables
+
 # General Document Settings
 FONT = "Arial"
 FONT_SIZE = 10.5
