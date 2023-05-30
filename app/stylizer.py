@@ -1,13 +1,6 @@
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.shared import Pt, Inches
+from docx.shared import Pt
 from datetime import datetime
-
-'''
-TODO
-- DRY
-- Fix up some of the repeated assignments in this module
-- Errors
-'''
 
 
 def style_ranking_numbers(rank: str) -> str:
@@ -23,36 +16,37 @@ def style_ranking_numbers(rank: str) -> str:
     
     return '--'
 
-def set_cell_font_size(cell, font_size: int):
+def set_cell_font_size(cell: type, font_size: int):
     """
     Sets cell paragraph's font size.
 
-    Expects: Integer > 0
-    Returns: 1 if updated successfully
+    Expects: Reference to Cell type, Integer > 0
+    Returns: Nothing
     """
 
     text = cell.paragraphs[0]
     text.style.font.size = Pt(font_size)
 
-    return 1
-
-def center_cell_text(cell):
+def center_cell_text(cell: type) -> None:
     """
     Applies center styling to inner-cell text.
 
-    Expects: Reference to cell
-    Returns: Nothing. Alters the cell's text
+    Expects: Reference to Cell type
+    Returns: Nothing
     """
 
     text = cell.paragraphs[0]
     text.alignment = WD_TABLE_ALIGNMENT.CENTER
 
-    return 1
+def bolden_cell_text(cell:type) -> None:
+    """
+    Bolden the cell's paragraph text.
 
-def bolden_cell_text(cell):
+    Expects: Reference to Cell type
+    Returns: Nothing
+    """
 
     cell.paragraphs[0].runs[0].font.bold = True
-    return 1
 
 def style_publish_date(date_string:str) -> str:
 
@@ -62,5 +56,12 @@ def style_publish_date(date_string:str) -> str:
     return publish_date
 
 def generate_namedate_header(unformatted_date_string: str, name_string: str) -> str:
+    """
+    Formats the information for use as a table header.
+
+    Expects: Date as string, name as string
+    Returns: Strings with format DD/DD/YYY ~newline~ LIST TITLE
+    """
+     
     date_string = style_publish_date(unformatted_date_string)
     return f"{date_string}\n{name_string}"
