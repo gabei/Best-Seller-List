@@ -1,7 +1,5 @@
 from docx import Document
 from docx.shared import Pt, Inches
-from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.oxml.ns import qn
 import stylizer
 
 
