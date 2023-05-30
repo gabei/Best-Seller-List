@@ -4,6 +4,12 @@ import settings
 
 
 def generate_NYT_best_seller_doc(book_api: dict) -> docbuilder:
+    """Entry point for this program. Harbors the function calls that build the NYT best seller list document.
+
+    Expects: The relevant NYT Books Api information in json format.
+    Returns: The document object.
+    """
+
     print(f"Generating New York Times Best Seller List: {book_api['list_name']}")
 
     # Build the Word Document
@@ -20,6 +26,12 @@ def generate_NYT_best_seller_doc(book_api: dict) -> docbuilder:
     return doc
 
 def build_docx(font: str, font_size: int, document_heading: str, margin_list_inches: list) -> docbuilder:
+    """Creates the document object. This must happen first to perform any of the other document related functions.
+
+    Expects: Font, font size, heading, margins
+    ReturnsL The document object. 
+    """
+
     doc = docbuilder.DocBuilder()
     doc.set_document_default_font_and_size(font, font_size)
     doc.create_header(document_heading)
@@ -27,7 +39,12 @@ def build_docx(font: str, font_size: int, document_heading: str, margin_list_inc
 
     return doc
 
-def build_docx_table(doc, book_api, table_rows_cols, table_allow_autofit) -> int:
+def build_docx_table(doc, book_api, table_rows_cols, table_allow_autofit) -> None:
+    """ Creates the table that will hold the NYT list.
+
+    Expects: doc object, api info, rows, columns, table autofit bool
+    Returns: Nothing. The table is created as a part of the document object. 
+    """
 
     # create an intial table with enough columns for headers
     doc.create_table(table_rows_cols) 
@@ -41,9 +58,12 @@ def build_docx_table(doc, book_api, table_rows_cols, table_allow_autofit) -> int
     header_list = ['This Week', list_namedate_header, 'Last Week', 'Weeks on List']
     doc.create_headers_for_table(header_list)
 
-    return 1
+def populate_docx_table(doc: docbuilder, book_api: dict, column_widths) -> None:
+    """ Populates the NYT table.
 
-def populate_docx_table(doc: docbuilder, book_api: dict, column_widths) -> int:
+    Expects: doc object, api info, rows, columns widths
+    Returns: Nothing. The table is created as a part of the document object.  
+    """
 
     for book in book_api["book_list"]:
         doc.build_row_from(book)
@@ -51,8 +71,12 @@ def populate_docx_table(doc: docbuilder, book_api: dict, column_widths) -> int:
     # Adjust column widths after filling
     doc.set_column_widths_inches(column_widths)
 
-    return 1
-
 def save_document(doc, title):
+    """ Save the document as docx filetype.
+
+    Expects: doc object, the title
+    Returns: The document. This is for use in other parts of the app.
+    """
+
     print(doc.save_document(title))
     return doc

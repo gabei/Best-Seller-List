@@ -6,14 +6,14 @@ import stylizer
 
 
 class DocBuilder:
-    """This class is used to organize methods related to .docx document creation. Upon initialization, it creates its own document using the docx module."""
+    """This class is used to organize methods related to .docx document creation. Upon initialization, it creates its own document using the docx module.
+    """
 
     def __init__(self):
         self.__doc = Document()
 
     def define_margins_inches(self, margin_list: list) -> list:
-        """
-        Sets the document margins in clock-wise order from margin_list, starting from left and ending on bottom.
+        """Sets the document margins in clock-wise order from margin_list, starting from left and ending on bottom.
 
         Expects: A list of four page margins in inches.
         Returns: The margin list if successful.
@@ -32,8 +32,7 @@ class DocBuilder:
         return margin_list
 
     def set_document_default_font_and_size(self, font_name="Arial", font_size="10"):
-        """
-        Sets the default font and font size for the document.
+        """Sets the default font and font size for the document.
 
         Expects: Font name as a string, font size as an int.
         Returns: Tuple containing both values if successful.
@@ -68,20 +67,19 @@ class DocBuilder:
         return text
     
     def create_table(self, rows_cols: tuple):
-        """
-        Creates a table of specified rows and columns. Creates a blank table if not specified.
+        """Creates a table of specified rows and columns. Creates a blank table if not specified.
 
         - Expects a tuple of integers > 0 for [0]=rows and [1]=cols
         - Invalid input will create a blank table
         - Returns 1 if successful
         """
+
         (r, c) = rows_cols
         self.table = self.__doc.add_table(rows=r, cols=c)
         return 1
 
     def create_headers_for_table(self, header_list: list) -> None:
-        """
-        Sets the text of the header cells of the table in header_list order: left -> right
+        """Sets the text of the header cells of the table in header_list order: left -> right
 
         Expects: A list of strings
         Returns: The list if successful
@@ -105,8 +103,7 @@ class DocBuilder:
         return header_list
     
     def set_column_widths_inches(self, width_list: list) -> list:
-        """
-        Sets table column widths in order of those supplied by width_list.
+        """Sets table column widths in order of those supplied by width_list.
 
         Expects: List of widths in INCHES
         Returns: The list of lengths if successful.
@@ -128,8 +125,7 @@ class DocBuilder:
         return width_list
         
     def build_row_from(self, data):
-        """
-        Builds a row of table data using the book info passed.
+        """Builds a row of table data using the book info passed.
 
         Expects an object
             - NYT Best Seller Data:

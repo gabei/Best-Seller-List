@@ -4,8 +4,7 @@ from datetime import datetime
 
 
 def style_ranking_numbers(rank: str) -> str:
-    """
-    Styles the rank number text
+    """Styles the rank number text
 
     Expects: Strings containing numbers
     Returns: 0s as "--" and all other numbers the same
@@ -17,8 +16,7 @@ def style_ranking_numbers(rank: str) -> str:
     return '--'
 
 def set_cell_font_size(cell: type, font_size: int):
-    """
-    Sets cell paragraph's font size.
+    """Sets cell paragraph's font size.
 
     Expects: Reference to Cell type, Integer > 0
     Returns: Nothing
@@ -28,8 +26,7 @@ def set_cell_font_size(cell: type, font_size: int):
     text.style.font.size = Pt(font_size)
 
 def center_cell_text(cell: type) -> None:
-    """
-    Applies center styling to inner-cell text.
+    """Applies center styling to inner-cell text.
 
     Expects: Reference to Cell type
     Returns: Nothing
@@ -39,8 +36,7 @@ def center_cell_text(cell: type) -> None:
     text.alignment = WD_TABLE_ALIGNMENT.CENTER
 
 def bolden_cell_text(cell:type) -> None:
-    """
-    Bolden the cell's paragraph text.
+    """Bolden the cell's paragraph text.
 
     Expects: Reference to Cell type
     Returns: Nothing
@@ -49,6 +45,11 @@ def bolden_cell_text(cell:type) -> None:
     cell.paragraphs[0].runs[0].font.bold = True
 
 def style_publish_date(date_string:str) -> str:
+    """ Formats the publish date to dd/dd/YYYY 
+
+    Expects: Date as string, name as string
+    Returns: Publish date as string
+    """
 
     new_date = datetime.strptime(date_string, '%Y-%m-%d')
     publish_date = new_date.strftime('%B %d %Y')
@@ -56,8 +57,7 @@ def style_publish_date(date_string:str) -> str:
     return publish_date
 
 def generate_namedate_header(unformatted_date_string: str, name_string: str) -> str:
-    """
-    Formats the information for use as a table header.
+    """Formats the information for use as a table header.
 
     Expects: Date as string, name as string
     Returns: Strings with format DD/DD/YYY ~newline~ LIST TITLE
