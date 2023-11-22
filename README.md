@@ -6,6 +6,6 @@ A quick app to call the NYT Book API and generate a neatly ordered word doc for 
 
 then 
 
-```pip install python-docx``` 
-```pip install requests``` 
-```pip install python-dotenv``` 
+```pip install python-docx```<br>
+```pip install requests```<br>
+```pip install python-dotenv```<br>
