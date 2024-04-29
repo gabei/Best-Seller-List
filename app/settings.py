@@ -7,6 +7,7 @@ DOCUMENT_HEADING = "The New York Times Best Seller List"
 MARGIN_LIST_INCHES = [0.5, 1.25, 0.5, 0.25]
 
 # Table Specific Settings
+VALID_MARGIN_COUNT = 4
 COLUMN_WIDTHS_INCHES = [0.5, 7, 0.6, 0.7]
 TABLE_ALLOW_AUTOFIT = True
 TABLE_ROWS_COLS = (1, 4)

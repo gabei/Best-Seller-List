@@ -1,5 +1,6 @@
 from docx import Document
 from docx.shared import Pt, Inches
+import settings 
 import stylizer
 
 
@@ -17,8 +18,9 @@ class DocBuilder:
         Returns: The margin list if successful.
         """
         
-        if len(margin_list) != 4:
+        if len(margin_list) != settings.VALID_MARGIN_COUNT:
             raise ValueError("List of margins must include 4 values.")
+            raise ValueError(f'List of margins must include {settings.VALID_MARGIN_COUNT} values.')
 
         sections = self.__doc.sections
         for section in sections:
@@ -31,8 +33,8 @@ class DocBuilder:
 
     def set_document_default_font_and_size(
             self, 
-            font_name="Arial", 
-            font_size="10") -> tuple:
+            font_name = settings.FONT, 
+            font_size = settings.FONT_SIZE) -> tuple:
         """Sets the default font and font size for the document.
 
         Expects: Font name as a string, font size as an int.
